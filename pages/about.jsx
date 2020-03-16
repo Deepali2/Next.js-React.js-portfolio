@@ -1,8 +1,8 @@
 import Link from 'next/link';
+import Layout from '../components/Layout';
 
 const About = () => (
-  <div>
-    <h1>About</h1>
+  <Layout title='About'>
     <Link href='/'><a>Go Home</a></Link>
     <p>A Javascript Programmer</p>
     <img
@@ -10,7 +10,7 @@ const About = () => (
       alt='javascript logo'
       height='200px'
     />
-  </div>
+  </Layout>
 )
 
 export default About;
