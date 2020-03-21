@@ -1,4 +1,4 @@
-import Layout from '../components/Layout';
+import Layout from '../comps/Layout';
 
 const HireMe = () => (
   <Layout title='Hire Me'>
