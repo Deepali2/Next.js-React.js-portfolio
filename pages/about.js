@@ -1,6 +1,8 @@
 import Link from 'next/link';
-import fetch from 'isomorphic-unfetch';
 import Layout from '../comps/Layout';
+import fetch from 'isomorphic-unfetch';
+
+import Error from './_error';
 import { Component } from 'react';
 
 export default class About extends Component {
@@ -8,12 +10,17 @@ export default class About extends Component {
   // getInitialProps is static so it can be accessed outside of the component as About.getInitialProps
   static async getInitialProps() {
     const res = await fetch('https://api.github.com/users/deepali2');
+    const statusCode = res.status > 200 ? res.status : false;
     const data = await res.json();
-    return { user: data }
+    return { user: data, statusCode }
   }
 
   render() {
-    const { user } = this.props;
+    const { user, statusCode } = this.props;
+
+    if (statusCode) {
+      return <Error statusCode={statusCode} />
+    }
 
     return (
       <Layout title='About'>
